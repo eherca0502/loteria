@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#172554">
+    <meta name="description" content="Juego de Lotería Mexicana con cartas aleatorias, velocidad ajustable e historial.">
+    <title>Lotería Mexicana</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header class="encabezado">
+        <div class="encabezado-contenido">
+            <div class="marca">
+                <span class="marca-simbolo">✺</span>
+                <div>
+                    <p class="marca-superior">JUEGO TRADICIONAL</p>
+                    <h1>Lotería Mexicana</h1>
+                </div>
+            </div>
+            <p class="encabezado-descripcion">
+                La suerte está echada. ¡Que comience la partida!
+            </p>
+        </div>
+    </header>
+
+    <main class="contenedor">
+        <section class="presentacion">
+            <div>
+                <p class="etiqueta">LA BARAJA ESTÁ LISTA</p>
+                <h2>¡Corre la voz!</h2>
+                <p class="presentacion-texto">
+                    Escucha cada carta, sigue el ritmo y disfruta de la lotería.
+                </p>
+            </div>
+            <div class="contador-circular">
+                <span id="contador">0 / 54</span>
+                <small>CARTAS</small>
+            </div>
+        </section>
+
+        <section class="zona-juego">
+            <div class="panel-control">
+                <div class="panel-titulo">
+                    <span class="numero-seccion">01</span>
+                    <div>
+                        <h2>La partida</h2>
+                        <p>Controla el ritmo del juego</p>
+                    </div>
+                </div>
+
+                <div class="estado-wrap">
+                    <span class="punto-estado"></span>
+                    <span id="estado">Lista para jugar</span>
+                </div>
+
+                <div class="controles">
+                    <button id="iniciar" class="boton boton-principal" type="button">
+                        ▶ Iniciar partida
+                    </button>
+
+                    <button id="pausar" class="boton boton-secundario" type="button" disabled>
+                        Ⅱ Pausar
+                    </button>
+
+                    <button id="siguiente" class="boton boton-secundario" type="button">
+                        Siguiente carta 
+                    </button>
+
+                    <button id="reiniciar" class="boton boton-peligro" type="button">
+                        ↻ Nueva partida
+                    </button>
+                </div>
+
+                <div class="ajuste-velocidad">
+                    <div class="velocidad-encabezado">
+                        <label for="velocidad">Velocidad de las cartas</label>
+                        <span id="velocidadTexto">5 segundos</span>
+                    </div>
+                    <input
+                        type="range"
+                        id="velocidad"
+                        min="2"
+                        max="15"
+                        value="5"
+                        step="1"
+                    >
+                    <div class="velocidad-extremos">
+                        <span>Rápida</span>
+                        <span>Tranquila</span>
+                    </div>
+                </div>
+
+                <div class="nota-juego">
+                    <span class="nota-icono">✦</span>
+                    <p id="mensaje">
+                        Pulsa Iniciar para comenzar a sacar las cartas.
+                    </p>
+                </div>
+            </div>
+
+            <div class="escenario-carta">
+                <div class="escenario-encabezado">
+                    <span>LA CARTA EN TURNO</span>
+                    <span class="adorno-estrella"></span>
+                </div>
+
+                <div class="marco-carta">
+                    <div id="placeholder" class="placeholder">
+                        <span class="placeholder-estrella"></span>
+                        <span class="placeholder-texto">La próxima carta</span>
+                        <span class="placeholder-subtexto">está por revelarse</span>
+                    </div>
+
+                    <div id="arteCarta" class="arte-carta" style="display: none;">
+                        <span id="numeroArte" class="numero-arte"></span>
+                        <span id="simboloArte" class="simbolo-arte"></span>
+                    </div>
+
+                    <img
+                        id="imagenCarta"
+                        class="imagen-carta"
+                        src=""
+                        alt=""
+                        style="display: none;"
+                    >
+                </div>
+
+                <div class="nombre-carta-wrap">
+                    <p class="nombre-etiqueta">LA CARTA DICE</p>
+                    <h2 id="nombreCarta">¡Listos para jugar!</h2>
+                </div>
+            </div>
+        </section>
+
+        <section class="seccion-historial">
+            <div class="historial-encabezado">
+                <div class="panel-titulo">
+                    <span class="numero-seccion">02</span>
+                    <div>
+                        <h2>Cartas que han salido</h2>
+                        <p>El camino que lleva la partida</p>
+                    </div>
+                </div>
+
+                <div class="historial-total">
+                    <span id="totalHistorial">0</span>
+                    <small>EN LA LISTA</small>
+                </div>
+            </div>
+
+            <div id="historial" class="historial">
+                <p class="vacio">Todavía no ha salido ninguna carta.</p>
+            </div>
+
+            <div class="historial-pie">
+                <span></span>
+                <p>Consulta el resumen para revisar todas las cartas en orden.</p>
+                <button id="verResumen" class="boton boton-resumen" type="button" >
+                    Ver resumen 
+                </button>
+            </div>
+        </section>
+
+        <footer class="pie-pagina">
+            <span></span>
+            <p>Lotería Mexicana </p>
+            <span></span>
+        </footer>
+    </main>
+
+    <dialog id="dialogoResumen" class="dialogo-resumen">
+        <div class="resumen-encabezado">
+            <div>
+                <p class="etiqueta">REGISTRO DE LA PARTIDA</p>
+                <h2 id="tituloResumen">Resumen de cartas</h2>
+            </div>
+            <button
+                id="cerrar"
+                class="boton-cerrar"
+                type="button"
+                aria-label="Cerrar resumen"
+            >×</button>
+        </div>
+
+        <p class="resumen-descripcion">
+            Estas son las cartas que han salido, en el orden en que aparecieron.
+        </p>
+
+        <div id="listaResumen" class="lista-resumen"></div>
+
+        <div class="resumen-acciones">
+            <button id="copiar" class="boton boton-secundario" type="button">
+                Copiar lista
+            </button>
+            <button id="listo" class="boton boton-principal" type="button">
+                Cerrar
+            </button>
+        </div>
+    </dialog>
+</body>
+</html>
