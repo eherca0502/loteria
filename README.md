@@ -17,8 +17,7 @@
 
 <p align="center">
   <a href="https://github.com/eherca0502/loteria">Repositorio</a>
-  ·
-  <a href="PON_AQUI_TU_URL_DE_NETLIFY">Ver demostración</a>
+  
 </p>
 
 ---
