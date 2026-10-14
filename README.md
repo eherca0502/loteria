@@ -15,10 +15,7 @@
   <strong>Una experiencia digital para disfrutar la Lotería Mexicana de forma sencilla, dinámica y accesible.</strong>
 </p>
 
-<p align="center">
-  <a href="https://github.com/eherca0502/loteria">Repositorio</a>
-  
-</p>
+
 
 ---
 
